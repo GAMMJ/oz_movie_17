@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
-import MovieCard from "../components/MovieCard"
-import SwiperMovie from "../util/SwiperMovie.jsx"
+import { SwiperSlide } from "swiper/react"
+import MovieCard from "../components/movie/MovieCard.jsx"
+import SwiperMovie from "../components/ui/SwiperMovie.jsx"
 import { getPopularMovies } from "../API/movie"
 
 const Home = () => {
@@ -28,7 +29,13 @@ const Home = () => {
   return (
     <>
       <section className="mb-8 relative">
-        <SwiperMovie movies={movies} />
+        <SwiperMovie>
+          {movies.map((movie) => (
+            <SwiperSlide key={movie.id}>
+              <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+            </SwiperSlide>
+          ))}
+        </SwiperMovie>
       </section>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">

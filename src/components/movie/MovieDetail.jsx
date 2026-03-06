@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { getMovieDetail } from "../API/movie"
+import { getMovieDetail } from "../../API/movie"
 
 const MovieDetail = ({ movieId }) => {
   const [movieDetail, setMovieDetail] = useState(null)
@@ -10,7 +10,8 @@ const MovieDetail = ({ movieId }) => {
       setMovieDetail(data)
     }
     fetchDetail()
-  }, [movieId]) // movieId가 바뀔 때마다 다시 호출
+  }, [movieId])
+
   if (!movieDetail) return <div>로딩 중...</div>
 
   return (

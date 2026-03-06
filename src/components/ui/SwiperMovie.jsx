@@ -7,7 +7,8 @@ import "swiper/css/navigation"
 // 필요한 모듈 불러오기
 import { Navigation, Autoplay } from "swiper/modules"
 
-const SwiperMovie = ({ movies }) => {
+// Todo className을 props로 받아서 적용하기
+const SwiperMovie = ({ children }) => {
   return (
     <>
       <Swiper
@@ -27,11 +28,7 @@ const SwiperMovie = ({ movies }) => {
           1024: { slidesPerView: 5 },
         }}
       >
-        {movies.map((movie) => (
-          <SwiperSlide key={movie.id}>
-            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-          </SwiperSlide>
-        ))}
+        {children}
       </Swiper>
       <button className="btn-prev absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white w-8 h-8 rounded-full">
         ‹
