@@ -19,3 +19,13 @@ export const getPopularMovies = async () => {
     console.error("데이터 받아오기 에러:", error)
   }
 }
+
+export const getMovieDetail = async (movieId) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}`, options)
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error("상세 정보 호출 에러:", error)
+  }
+}
