@@ -1,8 +1,17 @@
-import { useState } from "react"
-import movieDetailData from "../data/movieDetailData.json"
+import { useState, useEffect } from "react"
+import { getMovieDetail } from "../API/movie"
 
 const MovieDetail = ({ movieId }) => {
-  const [movieDetail, setMovieDetail] = useState(movieDetailData)
+  const [movieDetail, setMovieDetail] = useState(null)
+
+  useEffect(() => {
+    const fetchDetail = async () => {
+      const data = await getMovieDetail(movieId)
+      setMovieDetail(data)
+    }
+    fetchDetail()
+  }, [movieId]) // movieId가 바뀔 때마다 다시 호출
+  if (!movieDetail) return <div>로딩 중...</div>
 
   return (
     <div className="flex flex-col items-center gap-8 md:flex-row">
