@@ -1,0 +1,16 @@
+.movie-swiper .swiper-slide {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+  transform: scale(0.85);
+  opacity: 0.4;
+}
+.movie-swiper .swiper-slide-active {
+  transform: scale(1);
+  opacity: 1;
+}
+.movie-swiper .swiper-slide-prev,
+.movie-swiper .swiper-slide-next {
+  transform: scale(0.9);
+  opacity: 0.6;
+}
