@@ -56,7 +56,7 @@ const SwiperItem = ({ movie }) => {
       <img
         ref={imgRef}
         data-src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-        src=""
+        src={null}
         alt={movie.title}
         className="w-full h-full object-cover"
       />

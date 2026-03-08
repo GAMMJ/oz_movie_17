@@ -11,7 +11,7 @@ const MovieCard = ({ movieData }) => {
           <img
             ref={imgRef}
             data-src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`}
-            src=""
+            src={null}
             alt={movieData.title}
             className="w-full h-full object-cover"
           />
