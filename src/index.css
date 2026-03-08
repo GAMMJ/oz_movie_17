@@ -1,5 +1,11 @@
 @import "tailwindcss";
+@import "./assets/font/pretendard.css";
+
+@theme {
+  --font-pretendard: "Pretendard Variable", sans-serif;
+}
 
 body {
   @apply bg-black;
+  font-family: var(--font-pretendard);
 }
