@@ -6,26 +6,30 @@ const options = {
   },
 }
 
-export const getPopularMovies = async () => {
+const fetchFromTMDB = async (path, params = "") => {
   try {
-    const response = await fetch("https://api.themoviedb.org/3/movie/popular", options)
-    if (!response.ok) {
-      throw new Error("네트워크 에러 발생")
-    }
-    const data = await response.json()
-    const filteredData = data.results.filter((movie) => movie.adult === false)
-    return filteredData
+    const response = await fetch(`https://api.themoviedb.org/3${path}?${params}`, options)
+    return await response.json()
   } catch (error) {
-    console.error("데이터 받아오기 에러:", error)
+    console.error(`API 호출 에러 (${path}):`, error)
   }
 }
 
+export const getPopularMovies = async () => {
+  const data = await fetchFromTMDB("/movie/popular")
+  return data.results.filter((movie) => !movie.adult)
+}
+
 export const getMovieDetail = async (movieId) => {
-  try {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}`, options)
-    const data = await response.json()
-    return data
-  } catch (error) {
-    console.error("상세 정보 호출 에러:", error)
+  const koreanData = await fetchFromTMDB(
+    `/movie/${movieId}`,
+    "language=ko-KR&append_to_response=images&include_image_language=ko,en,null",
+  )
+
+  if (!koreanData.overview || koreanData.overview === "") {
+    const enData = await fetchFromTMDB(`/movie/${movieId}`, "language=en-US")
+    return { ...koreanData, overview: enData.overview }
   }
+
+  return koreanData
 }
