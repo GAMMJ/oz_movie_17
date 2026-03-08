@@ -2,7 +2,9 @@ import { useState, useEffect } from "react"
 import { SwiperSlide } from "swiper/react"
 import MovieCard from "../components/movie/MovieCard.jsx"
 import SwiperMovie from "../components/ui/SwiperMovie.jsx"
-import { getPopularMovies } from "../API/movie"
+import { getPopularMovies } from "../api/movie"
+import HomeSkeleton from "../components/skeleton/HomeSkeleton.jsx"
+import useLazyImage from "../hooks/useLazyImage.js"
 
 const Home = () => {
   const [movies, setMovies] = useState([])
@@ -22,17 +24,16 @@ const Home = () => {
     fetchMovies()
   }, [])
 
-  if (loading) {
-    return <div className="text-white text-center mt-20">로딩 중...</div>
-  }
+  if (loading) return <HomeSkeleton />
 
   return (
     <>
-      <section className="mb-8 relative">
+      <h2 className="text-2xl font-bold mb-5 text-white mt-9">인기 영화 🔥</h2>
+      <section className="mb-15 p-8 relative bg-linear-to-b from-black to-[#0f0f0f] rounded-4xl">
         <SwiperMovie>
           {movies.map((movie) => (
             <SwiperSlide key={movie.id}>
-              <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+              <SwiperItem movie={movie} />
             </SwiperSlide>
           ))}
         </SwiperMovie>
@@ -44,6 +45,22 @@ const Home = () => {
         ))}
       </div>
     </>
+  )
+}
+
+const SwiperItem = ({ movie }) => {
+  const imgRef = useLazyImage()
+
+  return (
+    <div className="aspect-2/3 rounded-lg overflow-hidden shadow-lg">
+      <img
+        ref={imgRef}
+        data-src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+        src=""
+        alt={movie.title}
+        className="w-full h-full object-cover"
+      />
+    </div>
   )
 }
 
