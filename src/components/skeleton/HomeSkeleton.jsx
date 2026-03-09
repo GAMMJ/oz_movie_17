@@ -3,10 +3,13 @@ const HomeSkeleton = () => (
     <div className="h-8 w-40 bg-gray-700 rounded mb-5 mt-9 animate-pulse" />
 
     {/* Swiper 스켈레톤 */}
-    <section className="mb-15 p-8 relative bg-linear-to-b from-black to-[#0f0f0f] rounded-4xl">
+    <section className="mb-15 p-8 bg-linear-to-b from-black to-[#0f0f0f] rounded-4xl">
       <div className="flex gap-5">
         {Array.from({ length: 5 }).map((_, i) => (
-          <div key={i} className="flex-1 aspect-2/3 bg-gray-700 rounded-lg animate-pulse" />
+          <div
+            key={i}
+            className={`flex-1 aspect-2/3 bg-gray-700 rounded-lg animate-pulse ${i >= 1 && i < 3 ? "hidden md:block" : ""} ${i >= 3 ? "hidden lg:block" : ""}`}
+          />
         ))}
       </div>
     </section>
