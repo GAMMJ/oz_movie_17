@@ -1,7 +1,7 @@
 import { useParams } from "react-router"
 import MovieDetail from "../components/movie/MovieDetail"
 import { useEffect, useState } from "react"
-import { getMovieDetail } from "../api/movie"
+import { getMovieDetail } from "../API/movie"
 import DetailSkeleton from "../components/skeleton/DetailSkeleton"
 
 const Detail = () => {

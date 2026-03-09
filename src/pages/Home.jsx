@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { SwiperSlide } from "swiper/react"
 import MovieCard from "../components/movie/MovieCard.jsx"
 import SwiperMovie from "../components/ui/SwiperMovie.jsx"
-import { getPopularMovies } from "../api/movie"
+import { getPopularMovies } from "../API/movie"
 import HomeSkeleton from "../components/skeleton/HomeSkeleton.jsx"
 import useLazyImage from "../hooks/useLazyImage.js"
 
