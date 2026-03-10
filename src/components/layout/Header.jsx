@@ -1,6 +1,9 @@
 import { Link } from "react-router"
+import useSearchQuery from "../../hooks/useSearchQuery"
 
 const Header = () => {
+  const { setQuery } = useSearchQuery()
+
   return (
     <nav className="flex items-center justify-between px-8 py-5 text-white">
       <Link to="/">
@@ -9,6 +12,7 @@ const Header = () => {
       <input
         className="rounded-3xl w-1/2 px-3 py-2 bg-white outline-none text-black"
         type="text"
+        onChange={(e) => setQuery(e.target.value)}
         placeholder="영화 제목을 입력하세요"
       />
       <div className="flex items-center gap-5">
