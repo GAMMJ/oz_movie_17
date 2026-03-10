@@ -3,6 +3,7 @@ import useLazyImage from "../../hooks/useLazyImage"
 
 const MovieCard = ({ movieData }) => {
   const imgRef = useLazyImage()
+  const rating = movieData?.vote_average
 
   return (
     <Link to={`/details/${movieData.id}`}>
@@ -18,7 +19,7 @@ const MovieCard = ({ movieData }) => {
         </div>
         <div className="p-4 flex flex-col grow">
           <h2 className="text-md font-bold line-clamp-2 mb-2 min-h-12">{movieData.title}</h2>
-          <p>평점 : {movieData.vote_average.toFixed(1)}</p>
+          <p>평점 : {rating != null ? rating.toFixed(1) : "N/A"}</p>
         </div>
       </div>
     </Link>
