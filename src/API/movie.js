@@ -33,3 +33,8 @@ export const getMovieDetail = async (movieId) => {
 
   return koreanData
 }
+
+export const searchMovies = async (query) => {
+  const data = await fetchFromTMDB("/search/movie", `query=${query}&language=ko-KR&page=1`)
+  return data.results.filter((movie) => !movie.adult)
+}
