@@ -4,7 +4,7 @@ import useSearchQuery from "../../hooks/useSearchQuery"
 import useOnClickOutside from "../../hooks/useOnclickOutside"
 
 const Header = () => {
-  const { setQuery } = useSearchQuery()
+  const { query, setQuery } = useSearchQuery()
   const [isSearchExpanded, setIsSearchExpanded] = useState(false)
   const navRef = useRef(null)
 
@@ -25,6 +25,7 @@ const Header = () => {
           ref={navRef}
           className="w-full rounded-3xl px-4 py-2 bg-white outline-none text-black"
           type="text"
+          value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="영화 제목을 입력하세요"
         />
