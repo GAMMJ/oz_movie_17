@@ -37,11 +37,14 @@ const Search = () => {
   if (movies.length === 0) return <p className="text-white">검색 결과가 없습니다.</p>
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
-      {movies.map((movie) => (
-        <MovieCard key={movie.id} movieData={movie} />
-      ))}
-    </div>
+    <>
+      <h2 className="text-white text-2xl font-bold mb-8">검색 결과</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} movieData={movie} />
+        ))}
+      </div>
+    </>
   )
 }
 
