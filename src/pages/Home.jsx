@@ -1,28 +1,12 @@
-import { useState, useEffect } from "react"
 import { SwiperSlide } from "swiper/react"
 import MovieCard from "../components/movie/MovieCard.jsx"
 import SwiperMovie from "../components/ui/SwiperMovie.jsx"
-import { getPopularMovies } from "../API/movie"
 import HomeSkeleton from "../components/skeleton/HomeSkeleton.jsx"
 import useLazyImage from "../hooks/useLazyImage.js"
+import usePopularMoviesStore from "../store/popularMovies"
 
 const Home = () => {
-  const [movies, setMovies] = useState([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const data = await getPopularMovies()
-        setMovies(data)
-      } catch (error) {
-        console.error("데이터 로딩 실패:", error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchMovies()
-  }, [])
+  const { movies, loading } = usePopularMoviesStore()
 
   if (loading) return <HomeSkeleton />
 
