@@ -28,17 +28,18 @@ const Search = () => {
         setLoading(false)
       }
     }
+    window.scrollTo(0, 0)
 
     fetchSearch()
   }, [param])
 
   if (loading) return <SearchSkeleton />
 
-  if (movies.length === 0) return <p className="text-white">검색 결과가 없습니다.</p>
+  if (movies.length === 0) return <p>검색 결과가 없습니다.</p>
 
   return (
     <>
-      <h2 className="text-white text-2xl font-bold mb-8">검색 결과</h2>
+      <h2 className="text-2xl font-bold mb-8">검색 결과</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
         {movies.map((movie) => (
           <MovieCard key={movie.id} movieData={movie} />

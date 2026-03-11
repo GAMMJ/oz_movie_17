@@ -7,7 +7,7 @@ const MovieCard = ({ movieData }) => {
 
   return (
     <Link to={`/details/${movieData.id}`}>
-      <div className="flex flex-col bg-[#202020] text-[#e0e0e0] rounded-xl hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] overflow-hidden hover:scale-102 transition-transform duration-300">
+      <div className="flex flex-col bg-white dark:bg-[#202020] text-black dark:text-[#e0e0e0] rounded-xl shadow-md dark:shadow-none hover:shadow-xl dark:hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] overflow-hidden hover:scale-102 transition-all duration-300 border border-gray-100 dark:border-transparent">
         <div className="overflow-hidden aspect-2/3">
           <img
             ref={imgRef}

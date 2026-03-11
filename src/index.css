@@ -4,8 +4,9 @@
 @theme {
   --font-pretendard: "Pretendard Variable", sans-serif;
 }
-
 body {
-  @apply bg-black;
+  @apply bg-white text-black dark:bg-[#0a0a0a] dark:text-white transition-colors duration-300;
   font-family: var(--font-pretendard);
 }
+
+@variant dark (&:where(.dark, .dark *));

@@ -12,8 +12,8 @@ const Home = () => {
 
   return (
     <>
-      <h2 className="text-2xl font-bold mb-5 text-white mt-9">인기 영화 🔥</h2>
-      <section className="mb-15 p-8 relative bg-linear-to-b from-black to-[#0f0f0f] rounded-4xl">
+      <h2 className="text-2xl font-bold mb-5 mt-9">인기 영화 🔥</h2>
+      <section className="mb-15 p-8 relative bg-gray-100 dark:bg-linear-to-b dark:from-black dark:to-[#0f0f0f] rounded-4xl transition-colors duration-300">
         <SwiperMovie>
           {movies.map((movie) => (
             <SwiperSlide key={movie.id}>

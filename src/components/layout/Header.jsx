@@ -1,9 +1,11 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useContext } from "react"
 import { Link } from "react-router"
 import useSearchQuery from "../../hooks/useSearchQuery"
 import useOnClickOutside from "../../hooks/useOnclickOutside"
+import { ThemeContext } from "../../context/ThemeContext"
 
 const Header = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext)
   const { query, setQuery } = useSearchQuery()
   const [isSearchExpanded, setIsSearchExpanded] = useState(false)
   const navRef = useRef(null)
@@ -11,7 +13,7 @@ const Header = () => {
   useOnClickOutside(navRef, () => setIsSearchExpanded(false))
 
   return (
-    <nav className="flex items-center justify-between h-20 px-8 py-5 text-white gap-4 relative">
+    <nav className="flex items-center justify-between h-20 px-8 py-5 gap-4 relative">
       {/* 모바일에서 검색창 확장 시 숨김 */}
       <Link to="/" className={`${isSearchExpanded ? "hidden" : "block"} sm:block shrink-0`}>
         <h1 className="text-[20px] font-bold sm:text-2xl whitespace-nowrap">OZ 무비</h1>
@@ -23,7 +25,7 @@ const Header = () => {
       >
         <input
           ref={navRef}
-          className="w-full rounded-3xl px-4 py-2 bg-white outline-none text-black"
+          className="w-full rounded-3xl px-4 py-2 bg-gray-100 dark:bg-[#202020] outline-none text-black dark:text-white border border-gray-300 dark:border-transparent dark:placeholder-gray-300"
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -36,15 +38,23 @@ const Header = () => {
         {/* 모바일에서만 보이는 검색 아이콘 */}
         {!isSearchExpanded && (
           <button className="sm:hidden p-1" onClick={() => setIsSearchExpanded(true)}>
-            <img src="/src/assets/icons/search.svg" alt="검색" className="w-5 h-5 invert" />
+            <img src="/src/assets/icons/search.svg" alt="검색" className="w-5 h-5 dark:invert" />
           </button>
         )}
 
+        <button
+          onClick={toggleTheme}
+          className="p-2 hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-colors text-xl"
+          title={theme === "light" ? "다크 모드" : "라이트 모드"}
+        >
+          {theme === "light" ? "🌙" : "☀️"}
+        </button>
+
         <button className="flex items-center gap-1 p-1">
-          <img src="/src/assets/icons/log-in.svg" alt="로그인" className="w-5 h-5 sm:w-6 sm:h-6 invert" />
+          <img src="/src/assets/icons/log-in.svg" alt="로그인" className="w-5 h-5 sm:w-6 sm:h-6 dark:invert" />
         </button>
         <button className="flex items-center gap-1 p-1">
-          <img src="/src/assets/icons/user-plus.svg" alt="회원가입" className="w-5 h-5 sm:w-6 sm:h-6 invert" />
+          <img src="/src/assets/icons/user-plus.svg" alt="회원가입" className="w-5 h-5 sm:w-6 sm:h-6 dark:invert" />
         </button>
       </div>
     </nav>

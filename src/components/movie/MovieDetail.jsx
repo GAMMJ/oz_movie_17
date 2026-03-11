@@ -14,7 +14,7 @@ const MovieDetail = ({ movie }) => {
         />
       </div>
 
-      <div className="flex flex-col flex-1 items-center md:items-end gap-10 md:gap-20 text-white w-full">
+      <div className="flex flex-col flex-1 items-center md:items-end gap-10 md:gap-20 w-full">
         <div className="flex flex-col items-center md:items-end gap-4 w-full">
           {logo ? (
             <img
@@ -30,14 +30,14 @@ const MovieDetail = ({ movie }) => {
             <p className="flex items-center gap-1">
               <span className="text-yellow-400">⭐</span> {movie.vote_average.toFixed(1)}
             </p>
-            <p className="text-gray-400">|</p>
-            <p className="text-gray-300">{movie.genres.map((genre) => genre.name).join(", ")}</p>
+            <p className="text-gray-400 dark:text-gray-400">|</p>
+            <p className="text-gray-900 dark:text-gray-300">{movie.genres.map((genre) => genre.name).join(", ")}</p>
           </div>
         </div>
 
         <div className="w-full flex flex-col items-center md:items-end gap-3">
           <p className="text-[18px] md:text-[20px] font-semibold">소개</p>
-          <p className="break-keep text-center md:text-right text-gray-300 leading-relaxed max-w-2xl">
+          <p className="break-keep text-center md:text-right text-gray-900 dark:text-gray-300 leading-relaxed max-w-2xl">
             {movie.overview}
           </p>
         </div>
