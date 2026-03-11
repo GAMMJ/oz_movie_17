@@ -1,35 +1,19 @@
-import { useState, useEffect } from "react"
 import { SwiperSlide } from "swiper/react"
 import MovieCard from "../components/movie/MovieCard.jsx"
 import SwiperMovie from "../components/ui/SwiperMovie.jsx"
-import { getPopularMovies } from "../api/movie"
 import HomeSkeleton from "../components/skeleton/HomeSkeleton.jsx"
 import useLazyImage from "../hooks/useLazyImage.js"
+import usePopularMoviesStore from "../store/popularMovies"
 
 const Home = () => {
-  const [movies, setMovies] = useState([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const data = await getPopularMovies()
-        setMovies(data)
-      } catch (error) {
-        console.error("데이터 로딩 실패:", error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchMovies()
-  }, [])
+  const { movies, loading } = usePopularMoviesStore()
 
   if (loading) return <HomeSkeleton />
 
   return (
     <>
-      <h2 className="text-2xl font-bold mb-5 text-white mt-9">인기 영화 🔥</h2>
-      <section className="mb-15 p-8 relative bg-linear-to-b from-black to-[#0f0f0f] rounded-4xl">
+      <h2 className="text-2xl font-bold mb-5 mt-9">인기 영화 🔥</h2>
+      <section className="mb-15 p-8 relative bg-gray-100 dark:bg-linear-to-b dark:from-black dark:to-[#0f0f0f] rounded-4xl transition-colors duration-300">
         <SwiperMovie>
           {movies.map((movie) => (
             <SwiperSlide key={movie.id}>
@@ -39,7 +23,7 @@ const Home = () => {
         </SwiperMovie>
       </section>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
         {movies.map((movie) => (
           <MovieCard key={movie.id} movieData={movie} />
         ))}

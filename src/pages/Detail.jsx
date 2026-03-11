@@ -1,7 +1,7 @@
 import { useParams } from "react-router"
 import MovieDetail from "../components/movie/MovieDetail"
 import { useEffect, useState } from "react"
-import { getMovieDetail } from "../api/movie"
+import { getMovieDetail } from "../API/movie"
 import DetailSkeleton from "../components/skeleton/DetailSkeleton"
 
 const Detail = () => {
@@ -23,7 +23,7 @@ const Detail = () => {
   return (
     <div className="mb-8">
       <div
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 -z-10 transition-opacity duration-300 opacity-50 dark:opacity-100"
         style={{
           backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
           backgroundSize: "cover",
@@ -32,7 +32,7 @@ const Detail = () => {
           transform: "scale(1.1)",
         }}
       />
-      <div className="relative z-10 px-8 py-12 max-w-6xl mx-auto">
+      <div className="relative z-10 px-8 py-12 max-w-6xl mx-auto text-black dark:text-white">
         <MovieDetail movie={movie} />
       </div>
     </div>
