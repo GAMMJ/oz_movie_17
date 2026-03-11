@@ -10,18 +10,22 @@ const Header = () => {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false)
   const navRef = useRef(null)
 
-  useOnClickOutside(navRef, () => setIsSearchExpanded(false))
+  useOnClickOutside(navRef, () => {
+    if (isSearchExpanded) {
+      setIsSearchExpanded(false)
+    }
+  })
 
   return (
     <nav className="flex items-center justify-between h-20 px-8 py-5 gap-4 relative">
       {/* 모바일에서 검색창 확장 시 숨김 */}
-      <Link to="/" className={`${isSearchExpanded ? "hidden" : "block"} sm:block shrink-0`}>
+      <Link to="/" className={`${isSearchExpanded ? "hidden" : "block"} md:block shrink-0`}>
         <h1 className="text-[20px] font-bold sm:text-2xl whitespace-nowrap">OZ 무비</h1>
       </Link>
 
-      {/* sm 이상에서 중앙 배치 및 50% 너비 유지 */}
+      {/* md 이상에서 중앙 배치 및 50% 너비 유지 */}
       <div
-        className={`${isSearchExpanded ? "grow flex justify-center items-center" : "hidden sm:flex sm:absolute sm:left-1/2 sm:-translate-x-1/2 sm:w-1/2"}`}
+        className={`${isSearchExpanded ? "grow flex justify-center items-center" : "hidden md:flex md:absolute md:left-1/2 md:-translate-x-1/2 md:w-1/2"}`}
       >
         <input
           ref={navRef}
@@ -37,25 +41,25 @@ const Header = () => {
       <div className={`${isSearchExpanded ? "hidden" : "flex"} items-center gap-4 sm:gap-7 shrink-0`}>
         {/* 모바일에서만 보이는 검색 아이콘 */}
         {!isSearchExpanded && (
-          <button className="sm:hidden p-1" onClick={() => setIsSearchExpanded(true)}>
+          <button className="md:hidden p-1" onClick={() => setIsSearchExpanded(true)}>
             <img src="/src/assets/icons/search.svg" alt="검색" className="w-5 h-5 dark:invert" />
           </button>
         )}
 
         <button
           onClick={toggleTheme}
-          className="p-2 hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-colors text-xl"
+          className="p-1 hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-colors text-xl"
           title={theme === "light" ? "다크 모드" : "라이트 모드"}
         >
           {theme === "light" ? "🌙" : "☀️"}
         </button>
 
-        <button className="flex items-center gap-1 p-1">
+        <Link to="/login" className="flex items-center gap-1 p-1 hover:scale-110 transition-transform">
           <img src="/src/assets/icons/log-in.svg" alt="로그인" className="w-5 h-5 sm:w-6 sm:h-6 dark:invert" />
-        </button>
-        <button className="flex items-center gap-1 p-1">
+        </Link>
+        <Link to="/signup" className="flex items-center gap-1 p-1 hover:scale-110 transition-transform">
           <img src="/src/assets/icons/user-plus.svg" alt="회원가입" className="w-5 h-5 sm:w-6 sm:h-6 dark:invert" />
-        </button>
+        </Link>
       </div>
     </nav>
   )

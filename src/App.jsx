@@ -4,10 +4,12 @@ import { lazy, Suspense } from "react"
 import { ThemeProvider } from "./context/ThemeContext"
 import HomeSkeleton from "./components/skeleton/HomeSkeleton"
 import DetailSkeleton from "./components/skeleton/DetailSkeleton"
-import Search from "./pages/Search"
 
 const Detail = lazy(() => import("./pages/Detail"))
 const Home = lazy(() => import("./pages/Home"))
+const Search = lazy(() => import("./pages/Search"))
+const Login = lazy(() => import("./pages/Login"))
+const Signup = lazy(() => import("./pages/Signup"))
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
               </Suspense>
             }
           />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Route>
       </Routes>
     </ThemeProvider>
